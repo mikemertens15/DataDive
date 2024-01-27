@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "InfoGraphicRectItem.h"
 #include "./ui_mainwindow.h"
 #include <QGraphicsRectItem>
 #include <QGraphicsLineItem>
@@ -69,7 +70,7 @@ void MainWindow::updateUI()
 
     while (current != nullptr) {
         // Create a rectangle item for node
-        QGraphicsRectItem* rect = new QGraphicsRectItem(xPos, yPos, nodeWidth, nodeHeight);
+        InfoGraphicRectItem* rect = new InfoGraphicRectItem(current->data, current->next, xPos, yPos, nodeWidth, nodeHeight);
         rect->setPen(pen);
         rect->setBrush(brush);
         scene->addItem(rect);
