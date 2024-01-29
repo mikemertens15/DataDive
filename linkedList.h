@@ -1,6 +1,9 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
+#include <QThread>
+#include "nodeSignaler.h"
+
 #pragma once
 
 template <typename T>
@@ -18,9 +21,10 @@ class Linked_List
 private:
     Node<T> *head;
     int length;
+    NodeSignaler* signaler;
 
 public:
-    Linked_List() : head(nullptr) {}
+    Linked_List() : head(nullptr), signaler(new NodeSignaler()) {}
 
     ~Linked_List()
     {
@@ -31,13 +35,26 @@ public:
             delete current;
             current = next;
         }
+        delete signaler;
     }
 
     bool is_empty() { return head == nullptr; }
 
+    void clear() {
+        Node<T> *current = head;
+        while (current != nullptr)
+        {
+            Node<T> *next = current->next;
+            delete current;
+            current = next;
+        }
+        head = nullptr;
+    }
+
     Node<T>* getHead()
     {
         if (!is_empty()) {return head;}
+        else return nullptr;
     }
 
     void insert_at_front(T data)
@@ -114,15 +131,23 @@ public:
         }
     }
 
-    Node<T> *search(T data)
+    void search(T data)
     {
         Node<T> *current = head;
-        while (current->data != data && current != nullptr)
+        while (current != nullptr)
         {
+            signaler->emitNodeVisited(current->data);
+            QThread::sleep(1); // Slow down the search for visualization
+            if (current->data == data) {
+                signaler->emitNodeFound(current->data);
+                return;
+            }
             current = current->next;
         }
-        return current;
+        signaler->emitNodeFound(-1); // Indicate node was not found
     }
+
+    NodeSignaler* getSignaler() { return signaler; }
 
     T peek_front() { return head->data; }
     T peek_back()

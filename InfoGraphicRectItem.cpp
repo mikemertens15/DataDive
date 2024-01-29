@@ -16,3 +16,5 @@ void InfoGraphicRectItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
 {
     QToolTip::hideText();
 }
+
+int InfoGraphicRectItem::getData() { return nodeData; }

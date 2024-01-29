@@ -18,10 +18,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void highlightNode(int data, QColor color);
     void updateUI();
 
 public slots:
-    void onAddButtonPressed();
+    void onAddButtonClicked();
+    void onDeleteButtonClicked();
+    void onSearchButtonClicked();
+    void onResetButtonClicked();
+    void onNodeVisited(int data);
+    void onNodeFound(int data);
 
 private slots:
     void onNodeColorButtonClicked();

@@ -10,6 +10,7 @@ class InfoGraphicRectItem : public QGraphicsRectItem
 {
 public:
     InfoGraphicRectItem(int data, Node<int>* nextNode, qreal x, qreal y, qreal width, qreal height, QGraphicsItem* parent = nullptr);
+    int getData();
 
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
