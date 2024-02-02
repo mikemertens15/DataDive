@@ -89,11 +89,11 @@ void LinkedListWidget::onSearchButtonClicked()
     }
 }
 
-void LinkedListWidget::highlightNode(int data, QColor color)
+void LinkedListWidget::highlightNode(Node<int>* node, QColor color)
 {
     for (QGraphicsItem* item : scene->items()) {
         InfoGraphicRectItem* rectItem = dynamic_cast<InfoGraphicRectItem*>(item);
-        if (rectItem && rectItem->getData() == data) {
+        if (rectItem && rectItem->getNode() == node) {
             rectItem->setBrush(color);
             break;
         }
@@ -106,17 +106,17 @@ void LinkedListWidget::onNodeColorButtonClicked()
     if (color.isValid()) nodeColor = color;
 }
 
-void LinkedListWidget::onNodeVisited(int data)
+void LinkedListWidget::onNodeVisited(Node<int>* node)
 {
     // Highlight the node with the 'nodeData' temporarily
-    highlightNode(data, Qt::yellow);
+    highlightNode(node, Qt::yellow);
     QCoreApplication::processEvents(); // Process events to update UI
 }
 
-void LinkedListWidget::onNodeFound(int data)
+void LinkedListWidget::onNodeFound(Node<int>* node)
 {
     // Permanently highlight node with 'nodeData'
-    if (data != -1) highlightNode(data, Qt::green);
+    if (node != nullptr) highlightNode(node, Qt::green);
     else QMessageBox::information(this, "Search Result", "Node not found");
 }
 
@@ -142,7 +142,7 @@ void LinkedListWidget::updateUI()
 
     while (current != nullptr) {
         // Create a rectangle item for node
-        InfoGraphicRectItem* rect = new InfoGraphicRectItem(current->data, current->next, xPos, yPos, nodeWidth, nodeHeight);
+        InfoGraphicRectItem* rect = new InfoGraphicRectItem(current, xPos, yPos, nodeWidth, nodeHeight);
         rect->setPen(pen);
         rect->setBrush(brush);
         scene->addItem(rect);

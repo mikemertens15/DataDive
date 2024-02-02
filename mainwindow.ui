@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>50</y>
+      <y>80</y>
       <width>421</width>
       <height>391</height>
      </rect>
@@ -36,19 +36,44 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="structuresMenu">
+    <property name="title">
+     <string>Structures</string>
+    </property>
+    <addaction name="showLinkedListAction"/>
+    <addaction name="actionStack"/>
+    <addaction name="actionQueue"/>
+    <addaction name="actionTree"/>
+    <addaction name="actionGraph"/>
+   </widget>
+   <addaction name="structuresMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
+  <action name="showLinkedListAction">
+   <property name="text">
+    <string>Linked List</string>
    </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
+  </action>
+  <action name="actionStack">
+   <property name="text">
+    <string>Stack</string>
+   </property>
+  </action>
+  <action name="actionQueue">
+   <property name="text">
+    <string>Queue</string>
+   </property>
+  </action>
+  <action name="actionTree">
+   <property name="text">
+    <string>Tree</string>
+   </property>
+  </action>
+  <action name="actionGraph">
+   <property name="text">
+    <string>Graph</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

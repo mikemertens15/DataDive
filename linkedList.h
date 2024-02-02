@@ -7,15 +7,6 @@
 #pragma once
 
 template <typename T>
-struct Node
-{
-    T data;
-    Node *next;
-
-    Node(T data) : data(data), next(nullptr) {}
-};
-
-template <typename T>
 class Linked_List
 {
 private:
@@ -136,15 +127,15 @@ public:
         Node<T> *current = head;
         while (current != nullptr)
         {
-            signaler->emitNodeVisited(current->data);
+            signaler->emitNodeVisited(current);
             QThread::sleep(1); // Slow down the search for visualization
             if (current->data == data) {
-                signaler->emitNodeFound(current->data);
+                signaler->emitNodeFound(current);
                 return;
             }
             current = current->next;
         }
-        signaler->emitNodeFound(-1); // Indicate node was not found
+        signaler->emitNodeFound(nullptr); // Indicate node was not found
     }
 
     NodeSignaler* getSignaler() { return signaler; }

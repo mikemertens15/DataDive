@@ -9,16 +9,15 @@
 class InfoGraphicRectItem : public QGraphicsRectItem
 {
 public:
-    InfoGraphicRectItem(int data, Node<int>* nextNode, qreal x, qreal y, qreal width, qreal height, QGraphicsItem* parent = nullptr);
-    int getData();
+    InfoGraphicRectItem(Node<int>* node, qreal x, qreal y, qreal width, qreal height, QGraphicsItem* parent = nullptr);
+    Node<int>* getNode();
 
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
 
 private:
-    int nodeData;
-    Node<int>* nextNodeAddress;
+    Node<int>* node;
 };
 
 #endif // INFOGRAPHICRECTITEM_H

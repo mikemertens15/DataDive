@@ -16,10 +16,10 @@ class LinkedListWidget : public QWidget
 public:
     explicit LinkedListWidget(QWidget *parent = nullptr);
     ~LinkedListWidget();
-    void highlightNode(int data, QColor color);
+    void highlightNode(Node<int>* node, QColor color);
     void updateUI();
-    void onNodeFound(int data);
-    void onNodeVisited(int data);
+    void onNodeFound(Node<int>* node);
+    void onNodeVisited(Node<int>* node);
 
 public slots:
     void onAddButtonClicked();

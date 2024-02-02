@@ -20,10 +20,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    LinkedListWidget* linkedListWidget;
+    void showLinkedList();
 
 private:
-    Ui::MainWindow *ui;   
+    Ui::MainWindow *ui;
+    QMenu *structuresMenu;
+    QAction *showLinkedListAction;
     QStackedWidget *stackedWidget;
+    QWidget *welcomeScreen;
+    LinkedListWidget* linkedListWidget;
 };
 #endif // MAINWINDOW_H
