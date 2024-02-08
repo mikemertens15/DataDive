@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     showLinkedListAction = ui->showLinkedListAction;
     connect(showLinkedListAction, &QAction::triggered, this, &MainWindow::showLinkedList);
 
+    // TODO: Extract this next section to an external welcome widget
     welcomeScreen = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout;
     QLabel *welcomeLabel = new QLabel("Welcome to DataDive!");

@@ -141,6 +141,7 @@ public:
     NodeSignaler* getSignaler() { return signaler; }
 
     T peek_front() { return head->data; }
+
     T peek_back()
     {
         Node<T> *current = head;
@@ -150,7 +151,34 @@ public:
         }
         return current->data;
     }
+
     int size() { return length; }
+
+    Node<T> *sort()
+    {
+        Node<T> *current = head;
+        Node<T> *next = nullptr;
+        T temp;
+        while (current != nullptr)
+        {
+            next = current->next;
+            while (next != nullptr)
+            {
+                signaler->emitNodesComparing(current, next);
+                QThread::sleep(1); // Slow down the search for visualization
+                if (current->data > next->data)
+                {
+                    temp = current->data;
+                    current->data = next->data;
+                    next->data = temp;
+                    signaler->emitNodesSwapped(current, next);
+                }
+                next = next->next;
+            }
+            current = current->next;
+        }
+        return head;
+    }
 };
 
 #endif // LINKEDLIST_H

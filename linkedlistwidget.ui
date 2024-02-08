@@ -13,104 +13,63 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>511</width>
-     <height>481</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="addNode">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>230</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add Node</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="deleteNode">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>260</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Delete Node</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="searchForNode">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>290</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Search</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="resetButton">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>500</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Reset</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="nodeColorButton">
-   <property name="geometry">
-    <rect>
-     <x>540</x>
-     <y>30</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Node Color</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="nodeValueInput">
-   <property name="geometry">
-    <rect>
-     <x>532</x>
-     <y>200</y>
-     <width>81</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="pageTitle">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>30</y>
-     <width>111</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Create A Linked List!</string>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="pageTitle">
+     <property name="text">
+      <string>Create A Linked List!</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGraphicsView" name="graphicsView"/>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="nodeValueInput"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="addNode">
+     <property name="text">
+      <string>Add Node</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="deleteNode">
+     <property name="text">
+      <string>Delete Node</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="searchForNode">
+     <property name="text">
+      <string>Search</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="sortButton">
+     <property name="text">
+      <string>Sort List</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="resetButton">
+     <property name="text">
+      <string>Reset</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="nodeColorButton">
+     <property name="text">
+      <string>Node Color</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

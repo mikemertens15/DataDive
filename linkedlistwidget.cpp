@@ -8,9 +8,8 @@
 #include <QMessageBox>
 
 LinkedListWidget::LinkedListWidget(QWidget *parent)
-    : QWidget(parent)
+    : DataStructureWidget(parent)
     , ui(new Ui::LinkedListWidget)
-    , scene(new QGraphicsScene(this))
 {
     ui->setupUi(this);
 
@@ -19,13 +18,14 @@ LinkedListWidget::LinkedListWidget(QWidget *parent)
     connect(ui->deleteNode, &QPushButton::clicked, this, &LinkedListWidget::onDeleteButtonClicked);
     connect(ui->searchForNode, &QPushButton::clicked, this, &LinkedListWidget::onSearchButtonClicked);
     connect(ui->resetButton, &QPushButton::clicked, this, &LinkedListWidget::onResetButtonClicked);
+    connect(ui->sortButton, &QPushButton::clicked, this, &LinkedListWidget::onSortButtonClicked);
 
-    connect(ui->nodeColorButton, &QPushButton::clicked, this, &LinkedListWidget::onNodeColorButtonClicked);
+    connect(ui->nodeColorButton, &QPushButton::clicked, this, &DataStructureWidget::onNodeColorButtonClicked);
 
-    connect(myList.getSignaler(), &NodeSignaler::nodeVisited, this, &LinkedListWidget::onNodeVisited);
-    connect(myList.getSignaler(), &NodeSignaler::nodeFound, this, &LinkedListWidget::onNodeFound);
-
-    nodeColor = Qt::lightGray;
+    connect(myList.getSignaler(), &NodeSignaler::nodeVisited, this, &DataStructureWidget::onNodeVisited);
+    connect(myList.getSignaler(), &NodeSignaler::nodeFound, this, &DataStructureWidget::onNodeFound);
+    connect(myList.getSignaler(), &NodeSignaler::nodesComparing, this, &DataStructureWidget::onNodeComparing);
+    connect(myList.getSignaler(), &NodeSignaler::nodesSwapped, this, &DataStructureWidget::onNodeSwapped);
 }
 
 LinkedListWidget::~LinkedListWidget()
@@ -69,7 +69,13 @@ void LinkedListWidget::onDeleteButtonClicked()
 
 void LinkedListWidget::onResetButtonClicked()
 {
-    myList.clear();
+    // Initialize linked list with some values for testing
+    myList.clear(); // Actual function
+    myList.insert_at_back(1);
+    myList.insert_at_back(2);
+    myList.insert_at_back(3);
+    myList.insert_at_back(4);
+    myList.insert_at_back(5);
     updateUI();
 }
 
@@ -89,35 +95,9 @@ void LinkedListWidget::onSearchButtonClicked()
     }
 }
 
-void LinkedListWidget::highlightNode(Node<int>* node, QColor color)
+void LinkedListWidget::onSortButtonClicked()
 {
-    for (QGraphicsItem* item : scene->items()) {
-        InfoGraphicRectItem* rectItem = dynamic_cast<InfoGraphicRectItem*>(item);
-        if (rectItem && rectItem->getNode() == node) {
-            rectItem->setBrush(color);
-            break;
-        }
-    }
-}
-
-void LinkedListWidget::onNodeColorButtonClicked()
-{
-    QColor color = QColorDialog::getColor(Qt::white, this, "Select node color");
-    if (color.isValid()) nodeColor = color;
-}
-
-void LinkedListWidget::onNodeVisited(Node<int>* node)
-{
-    // Highlight the node with the 'nodeData' temporarily
-    highlightNode(node, Qt::yellow);
-    QCoreApplication::processEvents(); // Process events to update UI
-}
-
-void LinkedListWidget::onNodeFound(Node<int>* node)
-{
-    // Permanently highlight node with 'nodeData'
-    if (node != nullptr) highlightNode(node, Qt::green);
-    else QMessageBox::information(this, "Search Result", "Node not found");
+    myList.sort();
 }
 
 void LinkedListWidget::updateUI()

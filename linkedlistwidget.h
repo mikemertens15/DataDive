@@ -2,36 +2,33 @@
 #define LINKEDLISTWIDGET_H
 
 #include <QWidget>
-#include <QGraphicsScene>
+#include "datastructurewidget.h"
 #include "linkedList.h"
 
 namespace Ui {
 class LinkedListWidget;
 }
 
-class LinkedListWidget : public QWidget
+class LinkedListWidget : public DataStructureWidget
 {
     Q_OBJECT
 
 public:
     explicit LinkedListWidget(QWidget *parent = nullptr);
     ~LinkedListWidget();
-    void highlightNode(Node<int>* node, QColor color);
-    void updateUI();
-    void onNodeFound(Node<int>* node);
-    void onNodeVisited(Node<int>* node);
 
 public slots:
-    void onAddButtonClicked();
-    void onDeleteButtonClicked();
-    void onSearchButtonClicked();
-    void onResetButtonClicked();
-    void onNodeColorButtonClicked();
+    void onAddButtonClicked() override;
+    void onDeleteButtonClicked() override;
+    void onSearchButtonClicked() override;
+    void onResetButtonClicked() override;
+    void onSortButtonClicked();
+
+protected:
+    void updateUI() override;
 
 private:
     Ui::LinkedListWidget *ui;
-    QGraphicsScene* scene;
-    QColor nodeColor;
     Linked_List<int> myList;
 };
 
