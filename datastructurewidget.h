@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QColor>
+#include "sorter.h"
 #include "node.h"
 
 class DataStructureWidget : public QWidget
@@ -17,10 +18,12 @@ public:
     void onNodeVisited(Node<int>* node);
     void onNodeComparing(Node<int>* node1, Node<int>* node2);
     void onNodeSwapped(Node<int>* node1, Node<int>* node2);
+    void startSorting();
 
 protected:
     QGraphicsScene *scene;
     QColor nodeColor;
+    Sorter* sorter;
 
     virtual void updateUI() = 0; // Pure structures update their UI
     virtual void onAddButtonClicked() = 0; // All structures should add nodes
@@ -33,6 +36,7 @@ protected:
 
 public slots:
     void onNodeColorButtonClicked();
+    void onSortingCompleted();
 };
 
 #endif // DATASTRUCTUREWIDGET_H

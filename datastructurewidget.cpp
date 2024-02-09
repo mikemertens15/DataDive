@@ -7,6 +7,7 @@
 
 DataStructureWidget::DataStructureWidget(QWidget *parent)
     : QWidget(parent), scene(new QGraphicsScene(this)), nodeColor(Qt::lightGray) {
+    sorter = new Sorter(this);
 }
 
 DataStructureWidget::~DataStructureWidget() {
@@ -63,4 +64,8 @@ void DataStructureWidget::highlightNode(Node<int>* node, const QColor& color) {
 void DataStructureWidget::onNodeColorButtonClicked() {
     QColor color = QColorDialog::getColor(Qt::white, this, "Select node color");
     if (color.isValid()) nodeColor = color;
+}
+
+void DataStructureWidget::onSortingCompleted() {
+    QMessageBox::information(this, "Sorting Completed", "The sorting process has been completed");
 }

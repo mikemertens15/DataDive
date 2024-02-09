@@ -26,6 +26,7 @@ LinkedListWidget::LinkedListWidget(QWidget *parent)
     connect(myList.getSignaler(), &NodeSignaler::nodeFound, this, &DataStructureWidget::onNodeFound);
     connect(myList.getSignaler(), &NodeSignaler::nodesComparing, this, &DataStructureWidget::onNodeComparing);
     connect(myList.getSignaler(), &NodeSignaler::nodesSwapped, this, &DataStructureWidget::onNodeSwapped);
+    connect(sorter, &Sorter::sortingCompleted, this, &DataStructureWidget::onSortingCompleted);
 }
 
 LinkedListWidget::~LinkedListWidget()
@@ -72,10 +73,10 @@ void LinkedListWidget::onResetButtonClicked()
     // Initialize linked list with some values for testing
     myList.clear(); // Actual function
     myList.insert_at_back(1);
-    myList.insert_at_back(2);
-    myList.insert_at_back(3);
-    myList.insert_at_back(4);
     myList.insert_at_back(5);
+    myList.insert_at_back(3);
+    myList.insert_at_back(2);
+    myList.insert_at_back(4);
     updateUI();
 }
 
@@ -97,7 +98,7 @@ void LinkedListWidget::onSearchButtonClicked()
 
 void LinkedListWidget::onSortButtonClicked()
 {
-    myList.sort();
+    sorter->sort(myList.getHead(), myList.getSignaler());
 }
 
 void LinkedListWidget::updateUI()

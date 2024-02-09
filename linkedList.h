@@ -15,7 +15,7 @@ private:
     NodeSignaler* signaler;
 
 public:
-    Linked_List() : head(nullptr), signaler(new NodeSignaler()) {}
+    Linked_List() : head(nullptr), length(0), signaler(new NodeSignaler()) {}
 
     ~Linked_List()
     {
@@ -164,14 +164,11 @@ public:
             next = current->next;
             while (next != nullptr)
             {
-                signaler->emitNodesComparing(current, next);
-                QThread::sleep(1); // Slow down the search for visualization
                 if (current->data > next->data)
                 {
                     temp = current->data;
                     current->data = next->data;
                     next->data = temp;
-                    signaler->emitNodesSwapped(current, next);
                 }
                 next = next->next;
             }
