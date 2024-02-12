@@ -36,6 +36,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         node.h
         datastructurewidget.h datastructurewidget.cpp
         sorter.h sorter.cpp
+        stack.h
+        stackwidget.h stackwidget.cpp
+        stack.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET DataDive APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

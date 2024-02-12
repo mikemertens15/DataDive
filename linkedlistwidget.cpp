@@ -1,11 +1,6 @@
 #include "linkedlistwidget.h"
 #include "ui_linkedlistwidget.h"
 #include "InfoGraphicRectItem.h"
-#include <QGraphicsRectItem>
-#include <QGraphicsLineItem>
-#include <QGraphicsTextItem>
-#include <QColorDialog>
-#include <QMessageBox>
 
 LinkedListWidget::LinkedListWidget(QWidget *parent)
     : DataStructureWidget(parent)

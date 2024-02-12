@@ -4,6 +4,11 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QColor>
+#include <QGraphicsRectItem>
+#include <QGraphicsLineItem>
+#include <QGraphicsTextItem>
+#include <QColorDialog>
+#include <QMessageBox>
 #include "sorter.h"
 #include "node.h"
 
